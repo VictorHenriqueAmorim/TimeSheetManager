@@ -27,7 +27,7 @@ namespace TimeSheetManager.Api {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<ISqlConnection>(x => ActivatorUtilities.CreateInstance<SqlConnectionFactory>(x, Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ISqlConnection>(x => ActivatorUtilities.CreateInstance<SqlConnectionFactory>(x, Configuration.GetConnectionString("DefaultConnection")));
             services.AddInfrastructure();
             services.AddSwaggerGen();
 
